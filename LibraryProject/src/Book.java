@@ -1,5 +1,5 @@
 
-public class Book implements Comparable {
+public class Book implements Comparable<Book> {
 
 	private static int serialMake = 0;
 	
@@ -58,8 +58,8 @@ public class Book implements Comparable {
 	}
 	
 	@Override
-	public int compareTo(Object o) {
-		return this.name.compareTo(((Book)o).getName());
+	public int compareTo(Book o) {
+		return this.name.compareTo(o.getName());
 	}
 	
 	@Override
