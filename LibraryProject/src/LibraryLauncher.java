@@ -4,15 +4,6 @@ public class LibraryLauncher {
 
 	public static void main(String[] args) {
 		
-		/* 도서 관리 메뉴 설정
-		 * 1. 도서 정보
-		 * 1.1. 도서 검색(도서명)
-		 * 1.2. 도서 검색(카테고리)
-		 * 1.3. 도서 대여
-		 * 1.4. 도서 반납
-		 * 1.5. 가장 인기있는 도서
-		 */
-		
 		Scanner keyIn = new Scanner(System.in);
 		
 		ManageBook manageBook = new ManageBook();
