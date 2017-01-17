@@ -13,8 +13,6 @@ public class LibraryLauncher {
 		 * 1.5. 가장 인기있는 도서
 		 */
 		
-		System.out.println();
-		
 		Scanner keyIn = new Scanner(System.in);
 		
 		ManageBook manageBook = new ManageBook();
