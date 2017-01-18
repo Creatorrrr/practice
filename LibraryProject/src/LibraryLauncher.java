@@ -12,9 +12,9 @@ public class LibraryLauncher {
 		int key = 0;
 		
 		while(true) {
-			System.out.println("========================");
+			System.out.println("==============================");
 			System.out.println("	나무소리 도서관 v1.0");
-			System.out.println("========================");
+			System.out.println("==============================");
 			System.out.println("[메뉴]");
 			System.out.println("1.	도서 검색(도서명)");
 			System.out.println("2.	도서 검색(카테고리)");

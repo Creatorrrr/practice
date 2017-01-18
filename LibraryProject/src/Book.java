@@ -1,18 +1,24 @@
 
-public class Book implements Comparable<Book> {
+public class Book{
 
 	private static int serialMake = 0;
+
+	public static final boolean LENTED = true;
+	public static final boolean NOT_LENTED = false;
 	
 	private String name;
 	private String serial;
 	private String category;
+	private String author;
+
 	private boolean lent;
 	private int lentCnt;
 	
-	public Book(String name, String category) {
+	public Book(String name, String category, String author) {
 		this.name = name;
 		this.serial = "B" + String.format("%04d", ++serialMake);
 		this.category = category;
+		this.author = author;
 		this.lent = false;
 		this.lentCnt = 0;
 	}
@@ -41,6 +47,14 @@ public class Book implements Comparable<Book> {
 		return this.category;
 	}
 	
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	
+	public String getAuthor() {
+		return author;
+	}
+	
 	public void setLent(boolean lent) {
 		this.lent = lent;
 	}
@@ -57,9 +71,8 @@ public class Book implements Comparable<Book> {
 		return this.lentCnt;
 	}
 	
-	@Override
-	public int compareTo(Book o) {
-		return this.name.compareTo(o.getName());
+	public void increaseLentCnt() {
+		this.lentCnt++;
 	}
 	
 	@Override
@@ -67,11 +80,11 @@ public class Book implements Comparable<Book> {
 		String str;
 		
 		if(lent == true) {
-			str = "대여중";
+			str = "대여중    ";
 		} else {
-			str = "    ";
+			str = "      ";
 		}
 		
-		return str + String.format("%7s", serial) + String.format("%4s      ", category) + name;
+		return str + String.format("%s  ", serial) + String.format("%-8s  ", category) + name;
 	}
 }
