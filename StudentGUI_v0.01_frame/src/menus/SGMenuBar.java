@@ -11,8 +11,8 @@ public class SGMenuBar extends JMenuBar{
 	private SGMenuEdit editMenu;
 	
 	public SGMenuBar() {
-		fileMenu = new fileMenu();
-		editMenu = new editMenu();
+//		fileMenu = new fileMenu();
+//		editMenu = new editMenu();
 		
 		this.add(fileMenu);
 		this.add(editMenu);
