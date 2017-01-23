@@ -16,8 +16,12 @@ public class SGInterfaceEvent implements ActionListener {
 			new SGRegisterInterface().initialize();
 		} else if (btn.getText().equals(SGConstants.SEARCH_STUDENT)) {
 			new SGSearchInterface().initialize();
+		} else if (btn.getText().equals(SGConstants.PRINT_STUDENT)) {
+			new SGPrintInterface().initialize();
 		} else if (btn.getText().equals(SGConstants.DELETE_STUDENT)) {
 			new SGDeleteInterface().initialize();
+		} else if (btn.getText().equals(SGConstants.MODIFY_STUDENT)) {
+			new SGModifyInterface().initialize();
 		}
 		
 	}

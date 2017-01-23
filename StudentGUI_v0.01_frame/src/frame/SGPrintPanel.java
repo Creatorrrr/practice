@@ -7,13 +7,10 @@ import java.awt.GridLayout;
 public class SGPrintPanel extends JPanel {
 	private JTable table;
 
-	/**
-	 * Create the panel.
-	 */
 	public SGPrintPanel() {
 		setLayout(new GridLayout(1, 1, 0, 0));
 		
-		table = new JTable(5, 5);
+		table = new JTable(25, 5);
 		add(table);
 
 	}

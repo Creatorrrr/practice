@@ -20,13 +20,13 @@ public class SGConstants {
 	}
 
 	public enum EEditMenuItems {
-		학생등록, 학생검색, 학생삭제, 학생출력, 학생수정
+		학생등록, 학생검색, 학생출력, 학생삭제, 학생수정
 	}
 	
 	public static final String REGIST_STUDENT = EEditMenuItems.values()[0].name();
 	public static final String SEARCH_STUDENT = EEditMenuItems.values()[1].name();
-	public static final String DELETE_STUDENT = EEditMenuItems.values()[2].name();
-	public static final String PRINT_STUDENT = EEditMenuItems.values()[3].name();
+	public static final String PRINT_STUDENT = EEditMenuItems.values()[2].name();
+	public static final String DELETE_STUDENT = EEditMenuItems.values()[3].name();
 	public static final String MODIFY_STUDENT = EEditMenuItems.values()[4].name();
 
 }
