@@ -1,6 +1,6 @@
 package frame;
 
-import java.awt.GridLayout;
+import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
@@ -8,17 +8,16 @@ import constants.SGConstants;
 
 public class SGMainFrame extends JFrame {
 
-	private SGInputPanel inputPanel;
 	private SGPrintPanel printPanel;
+	private SGControlPanel inputPanel;
 	
 	public SGMainFrame(String title) {
 		super(title);
-		inputPanel = new SGInputPanel();
 		printPanel = new SGPrintPanel();
-		setLayout(new GridLayout(0, 1, 0, 0));
-		
-		this.add(inputPanel);
-		this.add(printPanel);
+		inputPanel = new SGControlPanel();
+
+		this.add(printPanel);		
+		this.add(inputPanel, BorderLayout.SOUTH);
 	}
 	
 	public void initialize() {

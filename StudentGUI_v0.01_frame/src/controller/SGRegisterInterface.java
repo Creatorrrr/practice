@@ -1,35 +1,39 @@
-package frame;
+package controller;
 
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import constants.SGConstants.ELabelItems;
 
-public class SGInputPanel extends JPanel {
-	
+public class SGRegisterInterface extends JDialog {
+
 	private JTextField[] textField;
 
-	public SGInputPanel() {
-		setLayout(new GridLayout(0, 3, 10, 10));
+	public SGRegisterInterface() {
+		
+		setLayout(new GridLayout(0, 2, 10, 10));
 		
 		textField = new JTextField[ELabelItems.values().length];
 		
 		for(ELabelItems e : ELabelItems.values()) {
 			int p = e.ordinal();
-			
 			textField[p] = new JTextField();
 			add(new JLabel(e.name()));
 			add(textField[p]);
-			if(p == e.이름.ordinal()) {
-				add(new JButton("확인"));
-			} else {
-				add(new JPanel());
-			}
 		}
+		
+		add(new JButton("등록"));
+		add(new JButton("취소"));
+	}
+	
+	public void initialize() {
+		this.setBounds(100, 100, 450, 300);
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		this.setVisible(true);
 	}
 
 }
