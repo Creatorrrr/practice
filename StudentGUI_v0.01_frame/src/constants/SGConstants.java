@@ -11,22 +11,12 @@ public class SGConstants {
 		이름, 학번, 국어, 영어, 수학
 	}
 
-	public enum EMenuBarItems {
-		파일, 편집
-	}
-
-	public enum EFileMenuItems {
-		저장, 종료
-	}
-
-	public enum EEditMenuItems {
+	public enum EEditButtonItems {
 		학생등록, 학생검색, 학생출력, 학생삭제, 학생수정
 	}
 	
-	public static final String REGIST_STUDENT = EEditMenuItems.values()[0].name();
-	public static final String SEARCH_STUDENT = EEditMenuItems.values()[1].name();
-	public static final String PRINT_STUDENT = EEditMenuItems.values()[2].name();
-	public static final String DELETE_STUDENT = EEditMenuItems.values()[3].name();
-	public static final String MODIFY_STUDENT = EEditMenuItems.values()[4].name();
+	public enum EActionButtonItems {
+		등록, 검색, 출력, 삭제, 수정, 닫기
+	}
 
 }
