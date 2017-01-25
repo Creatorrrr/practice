@@ -84,10 +84,17 @@ public class SGStudent implements Comparable<SGStudent>, Serializable{
 		avg = (double)total / 3;
 	}
 	
-//	@Override
-//	public int compareTo(Student o) {
-//		return this.getName().compareTo(o.getName());
-//	}
+	public String[] getArray() {
+		String[] arr = new String[5];
+		
+		arr[0] = name;
+		arr[1] = studentId;
+		arr[2] = "" + kor;
+		arr[3] = "" + eng;
+		arr[4] = "" + math;
+		
+		return arr;
+	}
 	
 	@Override
 	public String toString() {

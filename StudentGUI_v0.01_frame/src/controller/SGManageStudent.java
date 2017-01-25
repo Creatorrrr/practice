@@ -120,20 +120,14 @@ public class SGManageStudent {
 		return null;
 	}
 	
-	public void printStudent() {
-		int select;
-		System.out.println("1. 성적순 출력");
-		System.out.println("2. 학번순 출력");
-		System.out.print("#메뉴 : ");
-		select = keyIn.nextInt();
-		
-		if(select == 1) {
+	public ArrayList<SGStudent> printStudent(int select) {
+		if(select == 0) {
 			System.out.println("----------성적순 출력----------");
 			Collections.sort(stds);
 			for(SGStudent s : stds) {
 				System.out.println(s.toString());
 			}
-		} else if (select == 2) {
+		} else if (select == 1) {
 			System.out.println("----------학번순 출력----------");
 			Collections.sort(stds, new Comparator<SGStudent>() {
 				@Override
@@ -146,16 +140,18 @@ public class SGManageStudent {
 				System.out.println(s.toString());
 			}
 		}
+		
+		return stds;
 	}
 	
-	public void modifyStudent(String studentId) {
+	public void modifyStudent(String target, String name, String studentId, int kor, int eng, int math) {
 		File file = new File(STUDENT_DIR);
 		
-		SGStudent s = search(studentId);
+		SGStudent student = search(target);
 		
-		modify(s);
+		modify(student, name, studentId, kor, eng, math);
 		
-		if(s != null) {
+		if(student != null) {
 			System.out.println("----------학생 수정----------");
 			
 			save(TEMP_DIR);
@@ -168,16 +164,11 @@ public class SGManageStudent {
 		}
 	}
 	
-	private void modify(SGStudent student) {
-		System.out.print("이름 : ");
-		student.setName(keyIn.next());
-		System.out.print("학번 : ");
-		student.setStudentId(keyIn.next());
-		System.out.print("국어 : ");
-		student.setKor(keyIn.nextInt());
-		System.out.print("영어 : ");
-		student.setEng(keyIn.nextInt());
-		System.out.print("수학 : ");
-		student.setMath(keyIn.nextInt());
+	private void modify(SGStudent student, String name, String studentId, int kor, int eng, int math) {
+		student.setName(name);
+		student.setStudentId(studentId);
+		student.setKor(kor);
+		student.setEng(eng);
+		student.setMath(math);
 	}
 }

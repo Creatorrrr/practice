@@ -23,12 +23,12 @@ public class SGControlPanel extends JPanel {
 	private SGDeleteInterface deleteInterface;
 	private SGModifyInterface modifyInterface;
 	
-	public SGControlPanel() {
-		registerInterface = new SGRegisterInterface();
-		searchInterface = new SGSearchInterface();
-		printInterface = new SGPrintInterface();
-		deleteInterface = new SGDeleteInterface();
-		modifyInterface = new SGModifyInterface();
+	public SGControlPanel(SGManageStudent manageStudent, SGPrintPanel printPanel) {
+		registerInterface = new SGRegisterInterface(manageStudent);
+		searchInterface = new SGSearchInterface(manageStudent);
+		printInterface = new SGPrintInterface(manageStudent, printPanel);
+		deleteInterface = new SGDeleteInterface(manageStudent);
+		modifyInterface = new SGModifyInterface(manageStudent);
 		
 		JButton button;
 		
@@ -46,12 +46,12 @@ public class SGControlPanel extends JPanel {
 		}
 	}
 	
-	public void initialize(SGManageStudent manageStudent) {
-		registerInterface.initialize(manageStudent);
-		searchInterface.initialize(manageStudent);
-//		printInterface.initialize();
-		deleteInterface.initialize(manageStudent);
-//		modifyInterface.initialize();
+	public void initialize() {
+		registerInterface.initialize();
+		searchInterface.initialize();
+		printInterface.initialize();
+		deleteInterface.initialize();
+		modifyInterface.initialize();
 	}
 	
 	public class SGInterfaceEvent implements ActionListener {
@@ -66,13 +66,13 @@ public class SGControlPanel extends JPanel {
 				searchInterface.openDialog();
 				break;
 			case 학생출력:
-				printInterface.initialize();
+				printInterface.openDialog();
 				break;
 			case 학생삭제:
 				deleteInterface.openDialog();
 				break;
 			case 학생수정:
-				modifyInterface.initialize();
+				modifyInterface.openDialog();
 				break;
 			}		
 		}

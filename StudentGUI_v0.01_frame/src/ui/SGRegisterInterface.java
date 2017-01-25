@@ -21,15 +21,14 @@ public class SGRegisterInterface extends JDialog {
 	
 	private SGRegisterInterface registerInterface;
 
-	public SGRegisterInterface() {
+	public SGRegisterInterface(SGManageStudent manageStudent) {
 		textField = new ArrayList<>();
+		this.manageStudent = manageStudent;		
 		registerInterface = this;
 	}
 	
-	public void initialize(SGManageStudent manageStudent) {
+	public void initialize() {
 		JButton button;
-		
-		this.manageStudent = manageStudent;
 		
 		this.setBounds(100, 100, 450, 300);
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

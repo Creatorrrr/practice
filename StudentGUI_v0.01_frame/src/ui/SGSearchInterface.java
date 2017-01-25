@@ -20,18 +20,17 @@ public class SGSearchInterface extends JDialog {
 	
 	private SGSearchInterface searchInterface;
 
-	public SGSearchInterface() {
+	public SGSearchInterface(SGManageStudent manageStudent) {
 		textField = new JTextField();
+		this.manageStudent = manageStudent;
 		searchInterface = this;
 	}
 	
-	public void initialize(SGManageStudent manageStudent) {
+	public void initialize() {
 		JButton button;	
 		
 		this.setBounds(100, 100, 450, 150);
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		
-		this.manageStudent = manageStudent;
 		
 		setModal(true);	// 대화상자 실행 시 상위 프레임 조작 불가하도록 설정
 		

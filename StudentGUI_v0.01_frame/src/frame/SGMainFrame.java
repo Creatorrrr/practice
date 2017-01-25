@@ -8,16 +8,19 @@ import constants.SGConstants;
 import controller.SGManageStudent;
 
 public class SGMainFrame extends JFrame {
-
+	
+	private SGManageStudent manageStudent;
+	
 	private SGPrintPanel printPanel;
 	private SGControlPanel inputPanel;
-	private SGManageStudent manageStudent;
 	
 	public SGMainFrame(String title) {
 		super(title);
-		printPanel = new SGPrintPanel();
-		inputPanel = new SGControlPanel();
+		
 		manageStudent = new SGManageStudent();
+		
+		printPanel = new SGPrintPanel();
+		inputPanel = new SGControlPanel(manageStudent, printPanel);
 
 		this.add(printPanel);		
 		this.add(inputPanel, BorderLayout.SOUTH);
@@ -28,7 +31,7 @@ public class SGMainFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		
-		inputPanel.initialize(manageStudent);
+		inputPanel.initialize();
 	}
 
 }

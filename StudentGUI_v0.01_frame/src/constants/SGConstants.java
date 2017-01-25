@@ -18,5 +18,9 @@ public class SGConstants {
 	public enum EActionButtonItems {
 		등록, 검색, 출력, 삭제, 수정, 닫기
 	}
+	
+	public enum ESortOptionItems {
+		학번순출력, 성적순출력
+	}
 
 }
