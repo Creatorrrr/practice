@@ -12,18 +12,22 @@ import javax.swing.JTextField;
 
 import constants.SGConstants.EActionButtonItems;
 import constants.SGConstants.ELabelItems;
+import constants.SGConstants.ESortOptionItems;
 import controller.SGManageStudent;
+import frame.SGPrintPanel;
 
 public class SGRegisterInterface extends JDialog {
 
 	private ArrayList<JTextField> textField;
 	private SGManageStudent manageStudent;
+	private SGPrintPanel printPanel;
 	
 	private SGRegisterInterface registerInterface;
 
-	public SGRegisterInterface(SGManageStudent manageStudent) {
+	public SGRegisterInterface(SGManageStudent manageStudent, SGPrintPanel printPanel) {
 		textField = new ArrayList<>();
-		this.manageStudent = manageStudent;		
+		this.manageStudent = manageStudent;
+		this.printPanel = printPanel;
 		registerInterface = this;
 	}
 	
@@ -39,18 +43,24 @@ public class SGRegisterInterface extends JDialog {
 		
 		for(ELabelItems e : ELabelItems.values()) {
 			textField.add(new JTextField());
-			add(new JLabel(e.name()));
+			add(new JLabel(e.getLabel()));
 			add(textField.get(e.ordinal()));
+			
+			if(e.equals(ELabelItems.MATH)) {
+				break;
+			}
 		}
 		
 		ButtonEvent event = new ButtonEvent();
 		
-		button = new JButton(EActionButtonItems.µî·Ï.name());
-		add(button);
+		button = new JButton(EActionButtonItems.REGIST.getUsage());
+		button.setActionCommand(EActionButtonItems.REGIST.name());
 		button.addActionListener(event);
-		button = new JButton(EActionButtonItems.´Ý±â.name());
 		add(button);
+		button = new JButton(EActionButtonItems.CLOSE.getUsage());
+		button.setActionCommand(EActionButtonItems.CLOSE.name());
 		button.addActionListener(event);
+		add(button);
 	}
 	
 	public void openDialog() {
@@ -72,7 +82,7 @@ public class SGRegisterInterface extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			switch(EActionButtonItems.valueOf(e.getActionCommand())) {
-			case µî·Ï:
+			case REGIST:
 				name = textField.get(0).getText();
 				studentId = textField.get(1).getText();
 				kor = Integer.parseInt(textField.get(2).getText());
@@ -80,13 +90,15 @@ public class SGRegisterInterface extends JDialog {
 				math = Integer.parseInt(textField.get(4).getText());
 				
 				manageStudent.registerStudent(name, studentId, kor, eng, math);
-				
+
+				printPanel.setTable(manageStudent.getStudentList());
+						
 				clearTextField();
 				
 				registerInterface.dispose();
 				
 				break;
-			case ´Ý±â:
+			case CLOSE:
 				registerInterface.dispose();
 				break;
 			}		

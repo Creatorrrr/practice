@@ -10,19 +10,24 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import constants.SGConstants.EActionButtonItems;
+import constants.SGConstants.ELabelItems;
+import constants.SGConstants.ESortOptionItems;
 import controller.SGManageStudent;
+import frame.SGPrintPanel;
 
 public class SGDeleteInterface extends JDialog {
 
 	private JTextField textField;
 	
 	private SGManageStudent manageStudent;
+	private SGPrintPanel printPanel;
 	
 	private SGDeleteInterface deleteInterface;
 
-	public SGDeleteInterface(SGManageStudent manageStudent) {
+	public SGDeleteInterface(SGManageStudent manageStudent, SGPrintPanel printPanel) {
 		textField = new JTextField();
 		this.manageStudent = manageStudent;
+		this.printPanel = printPanel;
 		deleteInterface = this;
 	}
 	
@@ -36,17 +41,19 @@ public class SGDeleteInterface extends JDialog {
 		
 		setLayout(new GridLayout(2, 2, 10, 10));
 		
-		add(new JLabel("ÇÐ¹ø"));
+		add(new JLabel(ELabelItems.STUDENT_ID.getLabel()));
 		add(textField);
 		
 		ButtonEvent event = new ButtonEvent();
 		
-		button = new JButton("»èÁ¦");
-		add(button);
+		button = new JButton(EActionButtonItems.DELETE.getUsage());
+		button.setActionCommand(EActionButtonItems.DELETE.name());
 		button.addActionListener(event);
-		button = new JButton("´Ý±â");
 		add(button);
+		button = new JButton(EActionButtonItems.CLOSE.getUsage());
+		button.setActionCommand(EActionButtonItems.CLOSE.name());
 		button.addActionListener(event);
+		add(button);
 	}
 	
 	public void openDialog() {
@@ -64,17 +71,19 @@ public class SGDeleteInterface extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			switch(EActionButtonItems.valueOf(e.getActionCommand())) {
-			case »èÁ¦:
+			case DELETE:
 				studentId = textField.getText();
 				
 				manageStudent.deleteStudent(studentId);
+				
+				printPanel.setTable(manageStudent.getStudentList());
 				
 				clearTextField();
 				
 				deleteInterface.dispose();
 				
 				break;
-			case ´Ý±â:
+			case CLOSE:
 				deleteInterface.dispose();
 				break;
 			}		

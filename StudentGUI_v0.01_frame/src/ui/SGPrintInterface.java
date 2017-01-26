@@ -3,6 +3,7 @@ package ui;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -11,6 +12,7 @@ import javax.swing.JRadioButton;
 import constants.SGConstants.EActionButtonItems;
 import constants.SGConstants.ESortOptionItems;
 import controller.SGManageStudent;
+import controller.SGStudent;
 import frame.SGPrintPanel;
 import ui.SGDeleteInterface.ButtonEvent;
 
@@ -20,7 +22,7 @@ public class SGPrintInterface extends JDialog {
 	
 	private ButtonGroup buttonGroup;
 	
-	private JRadioButton sortName;	
+	private JRadioButton sortScore;	
 	private JRadioButton sortStudentId;
 	
 	private SGManageStudent manageStudent;
@@ -31,8 +33,8 @@ public class SGPrintInterface extends JDialog {
 	public SGPrintInterface(SGManageStudent manageStudent, SGPrintPanel printPanel) {
 		buttonGroup = new ButtonGroup();
 		
-		sortStudentId = new JRadioButton(ESortOptionItems.학번순출력.name());
-		sortName = new JRadioButton(ESortOptionItems.성적순출력.name());
+		sortStudentId = new JRadioButton(ESortOptionItems.SORT_BY_ID.getOrder());
+		sortScore = new JRadioButton(ESortOptionItems.SORT_BY_SCORE.getOrder());
 		
 		this.manageStudent = manageStudent;
 		this.printPanel = printPanel;
@@ -51,19 +53,21 @@ public class SGPrintInterface extends JDialog {
 		setLayout(new GridLayout(2, 2, 0, 0));
 		
 		buttonGroup.add(sortStudentId);
-		buttonGroup.add(sortName);
+		buttonGroup.add(sortScore);
 		
 		add(sortStudentId);
-		add(sortName);
+		add(sortScore);
 		
 		ButtonEvent event = new ButtonEvent();
 		
-		button = new JButton("출력");
-		add(button);
+		button = new JButton(EActionButtonItems.PRINT.getUsage());
+		button.setActionCommand(EActionButtonItems.PRINT.name());
 		button.addActionListener(event);
-		button = new JButton("취소");
 		add(button);
+		button = new JButton(EActionButtonItems.CLOSE.getUsage());
+		button.setActionCommand(EActionButtonItems.CLOSE.name());
 		button.addActionListener(event);
+		add(button);
 	}
 	
 	public void openDialog() {
@@ -73,20 +77,23 @@ public class SGPrintInterface extends JDialog {
 	public class ButtonEvent implements ActionListener {
 		
 		String studentId;
-
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			switch(EActionButtonItems.valueOf(e.getActionCommand())) {
-			case 출력:
+			case PRINT:
 				if(sortStudentId.isSelected()) {
-					printPanel.setTable(manageStudent.printStudent(ESortOptionItems.학번순출력.ordinal()));	// 임시로 학번순 고정
-				} else if (sortName.isSelected()) {
-					
+					manageStudent.sortStudent(ESortOptionItems.SORT_BY_ID.ordinal());
+				} else if (sortScore.isSelected()) {
+					manageStudent.sortStudent(ESortOptionItems.SORT_BY_SCORE.ordinal());
 				}
+				
+				printPanel.setTable(manageStudent.getStudentList());
+				
 				printInterface.dispose();
 				
 				break;
-			case 닫기:
+			case CLOSE:
 				printInterface.dispose();
 				break;
 			}		

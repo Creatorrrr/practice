@@ -8,7 +8,23 @@ public class SGConstants {
 	public static final int MAINFRAME_HEIGHT = 500;
 
 	public enum ELabelItems {
-		이름, 학번, 국어, 영어, 수학
+		NAME("이름"),
+		STUDENT_ID("학번"),
+		KOR("국어"),
+		ENG("영어"),
+		MATH("수학"),
+		TOTAL("총점"),
+		AVG("평균");
+		
+		private String label;
+		
+		private ELabelItems(String label) {
+			this.label = label;
+		}
+		
+		public String getLabel() {
+			return label;
+		}
 	}
 
 	public enum EEditButtonItems {
@@ -16,11 +32,37 @@ public class SGConstants {
 	}
 	
 	public enum EActionButtonItems {
-		등록, 검색, 출력, 삭제, 수정, 닫기
+		REGIST("등록"),
+		SEARCH("검색"),
+		PRINT("출력"),
+		DELETE("삭제"),
+		MODIFY("수정"),
+		CLOSE("닫기");
+		
+		private String usage;
+		
+		private EActionButtonItems(String usage) {
+			this.usage = usage;
+		}
+		
+		public String getUsage() {
+			return usage;
+		}
 	}
 	
 	public enum ESortOptionItems {
-		학번순출력, 성적순출력
+		SORT_BY_ID("학번순출력"),
+		SORT_BY_SCORE("성적순출력");
+		
+		private String order;
+		
+		private ESortOptionItems(String order) {
+			this.order = order;
+		}
+		
+		public String getOrder() {
+			return order;
+		}
 	}
 
 }

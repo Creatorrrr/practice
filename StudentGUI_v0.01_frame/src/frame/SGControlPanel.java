@@ -24,11 +24,11 @@ public class SGControlPanel extends JPanel {
 	private SGModifyInterface modifyInterface;
 	
 	public SGControlPanel(SGManageStudent manageStudent, SGPrintPanel printPanel) {
-		registerInterface = new SGRegisterInterface(manageStudent);
-		searchInterface = new SGSearchInterface(manageStudent);
+		registerInterface = new SGRegisterInterface(manageStudent, printPanel);
+		searchInterface = new SGSearchInterface(manageStudent, printPanel);
 		printInterface = new SGPrintInterface(manageStudent, printPanel);
-		deleteInterface = new SGDeleteInterface(manageStudent);
-		modifyInterface = new SGModifyInterface(manageStudent);
+		deleteInterface = new SGDeleteInterface(manageStudent, printPanel);
+		modifyInterface = new SGModifyInterface(manageStudent, printPanel);
 		
 		JButton button;
 		

@@ -1,6 +1,8 @@
 package controller;
 import java.io.Serializable;
 
+import constants.SGConstants.ELabelItems;
+
 public class SGStudent implements Comparable<SGStudent>, Serializable{
 
 	private String name;
@@ -18,6 +20,8 @@ public class SGStudent implements Comparable<SGStudent>, Serializable{
 		this.kor = kor;
 		this.eng = eng;
 		this.math = math;
+		
+		calculateScore();
 	}
 
 	public void setName(String name) {
@@ -85,13 +89,15 @@ public class SGStudent implements Comparable<SGStudent>, Serializable{
 	}
 	
 	public String[] getArray() {
-		String[] arr = new String[5];
+		String[] arr = new String[ELabelItems.values().length];
 		
 		arr[0] = name;
 		arr[1] = studentId;
 		arr[2] = "" + kor;
 		arr[3] = "" + eng;
 		arr[4] = "" + math;
+		arr[5] = "" + total;
+		arr[6] = String.format("%.2f", avg);
 		
 		return arr;
 	}

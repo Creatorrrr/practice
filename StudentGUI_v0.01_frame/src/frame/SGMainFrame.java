@@ -32,6 +32,7 @@ public class SGMainFrame extends JFrame {
 		this.setVisible(true);
 		
 		inputPanel.initialize();
+		printPanel.initialize(manageStudent);
 	}
 
 }

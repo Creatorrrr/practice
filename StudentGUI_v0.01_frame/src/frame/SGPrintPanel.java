@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import constants.SGConstants.ELabelItems;
+import controller.SGManageStudent;
 import controller.SGStudent;
 
 public class SGPrintPanel extends JPanel {
@@ -20,7 +21,7 @@ public class SGPrintPanel extends JPanel {
 		tableModel = new DefaultTableModel();
 		
 		for(ELabelItems e : ELabelItems.values()) {
-			tableModel.addColumn(e.name());
+			tableModel.addColumn(e.getLabel());
 		}
 		
 		setLayout(new GridLayout(1, 1, 0, 0));	
@@ -28,6 +29,10 @@ public class SGPrintPanel extends JPanel {
 		table = new JTable(tableModel);
 		
 		add(new JScrollPane(table));
+	}
+	
+	public void initialize(SGManageStudent manageStudent) {
+		setTable(manageStudent.getStudentList());
 	}
 	
 	public void setTable(ArrayList<SGStudent> studentList) {

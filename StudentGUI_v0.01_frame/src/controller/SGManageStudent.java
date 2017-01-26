@@ -9,7 +9,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Scanner;
+
+import constants.SGConstants.ESortOptionItems;
 
 public class SGManageStudent {
 	
@@ -17,7 +18,6 @@ public class SGManageStudent {
 	private static final String STUDENT_DIR = "student_data.dat";
 
 	private ArrayList<SGStudent> stds;
-	private Scanner keyIn;
 	
 	public SGManageStudent() {
 		stds = new ArrayList<>();
@@ -25,20 +25,31 @@ public class SGManageStudent {
 		load();
 	}
 	
-	public void registerStudent(String name, String studentId, int kor, int eng, int math) {
-		stds.add(new SGStudent(name, studentId, kor, eng, math));
-		System.out.println("등록되었습니다.");
-		save(STUDENT_DIR);
+	public ArrayList<SGStudent> getStudentList() {
+		return stds;
 	}
 	
-	public void searchStudent(String studentId) {
+	public boolean registerStudent(String name, String studentId, int kor, int eng, int math) {
+		if(search(studentId) == null) {
+			stds.add(new SGStudent(name, studentId, kor, eng, math));
+			System.out.println("등록되었습니다.");
+			save(STUDENT_DIR);
+			return true;
+		} else {
+			System.out.println("이미 존재하는 학생입니다.");
+			return false;
+		}
+	}
+	
+	public ArrayList<SGStudent> searchStudent(String studentId) {
 		SGStudent s = search(studentId);
+		ArrayList<SGStudent> searchedList = new ArrayList<>();
 		
 		if(s != null) {
-			System.out.println("----------검색 결과----------");
-			System.out.println(s.toString());
+			searchedList.add(s);
+			return searchedList;
 		} else {
-			System.out.println("찾는 학번의 학생이 존재하지 않습니다.");
+			return null;
 		}
 	}
 	
@@ -48,7 +59,6 @@ public class SGManageStudent {
 		SGStudent s = search(studentId);
 		
 		if(s != null) {
-			System.out.println("----------학생 삭제----------");
 			stds.remove(s);
 			
 			save(TEMP_DIR);
@@ -60,12 +70,6 @@ public class SGManageStudent {
 			System.out.println("찾는 학번의 학생이 존재하지 않습니다.");
 		}
 	}
-	
-//	private void changeFileName() {
-//		File file = new File(TEMP_DIR);
-//		
-//		file.renameTo(new File(""))
-//	}
 	
 	private void save(String dir) {
 		ObjectOutputStream fout = null;
@@ -120,28 +124,17 @@ public class SGManageStudent {
 		return null;
 	}
 	
-	public ArrayList<SGStudent> printStudent(int select) {
-		if(select == 0) {
-			System.out.println("----------성적순 출력----------");
+	public void sortStudent(int select) {
+		if(select == ESortOptionItems.SORT_BY_SCORE.ordinal()) {
 			Collections.sort(stds);
-			for(SGStudent s : stds) {
-				System.out.println(s.toString());
-			}
-		} else if (select == 1) {
-			System.out.println("----------학번순 출력----------");
+		} else if (select == ESortOptionItems.SORT_BY_ID.ordinal()) {
 			Collections.sort(stds, new Comparator<SGStudent>() {
 				@Override
 				public int compare(SGStudent o1, SGStudent o2) {
 					return o1.getStudentId().compareTo(o2.getStudentId());
 				}
 			});
-			
-			for(SGStudent s : stds) {
-				System.out.println(s.toString());
-			}
 		}
-		
-		return stds;
 	}
 	
 	public void modifyStudent(String target, String name, String studentId, int kor, int eng, int math) {
@@ -152,8 +145,6 @@ public class SGManageStudent {
 		modify(student, name, studentId, kor, eng, math);
 		
 		if(student != null) {
-			System.out.println("----------학생 수정----------");
-			
 			save(TEMP_DIR);
 			
 			file.delete();
