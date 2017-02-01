@@ -6,6 +6,10 @@ public class SGConstants {
 
 	public static final int MAINFRAME_WIDTH = 500;
 	public static final int MAINFRAME_HEIGHT = 500;
+	
+	public static final int TRUE = 1;
+	public static final int FALSE = 0;
+	public static final int EXIST = 2;
 
 	public enum ELabelItems {
 		NAME("이름"),
@@ -28,7 +32,21 @@ public class SGConstants {
 	}
 
 	public enum EEditButtonItems {
-		학생등록, 학생검색, 학생출력, 학생삭제, 학생수정
+		REGIST_STUDENT("학생등록"),
+		SEARCH_STUDENT("학생검색"),
+		PRINT_STUDENT("학생출력"),
+		DELETE_STUDENT("학생삭제"),
+		MODIFY_STUDENT("학생수정");
+		
+		private String usage;
+		
+		private EEditButtonItems(String usage) {
+			this.usage = usage;
+		}
+		
+		public String getUsage() {
+			return usage;
+		}
 	}
 	
 	public enum EActionButtonItems {

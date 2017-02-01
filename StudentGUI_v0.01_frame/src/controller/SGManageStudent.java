@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import constants.SGConstants;
 import constants.SGConstants.ESortOptionItems;
 
 public class SGManageStudent {
@@ -53,7 +54,7 @@ public class SGManageStudent {
 		}
 	}
 	
-	public void deleteStudent(String studentId) {
+	public boolean deleteStudent(String studentId) {
 		File file = new File(STUDENT_DIR);
 		
 		SGStudent s = search(studentId);
@@ -66,8 +67,10 @@ public class SGManageStudent {
 			file.delete();
 			file = new File(TEMP_DIR);
 			file.renameTo(new File(STUDENT_DIR));
+			return true;
 		} else {
 			System.out.println("찾는 학번의 학생이 존재하지 않습니다.");
+			return false;
 		}
 	}
 	
@@ -137,21 +140,27 @@ public class SGManageStudent {
 		}
 	}
 	
-	public void modifyStudent(String target, String name, String studentId, int kor, int eng, int math) {
+	public int modifyStudent(String target, String name, String studentId, int kor, int eng, int math) {
 		File file = new File(STUDENT_DIR);
 		
 		SGStudent student = search(target);
 		
-		modify(student, name, studentId, kor, eng, math);
-		
 		if(student != null) {
+			if(search(studentId) != null) {
+				return SGConstants.EXIST;
+			}
+			
+			modify(student, name, studentId, kor, eng, math);
+			
 			save(TEMP_DIR);
 			
 			file.delete();
 			file = new File(TEMP_DIR);
 			file.renameTo(new File(STUDENT_DIR));
+			return SGConstants.TRUE;
 		} else {
 			System.out.println("찾는 학번의 학생이 존재하지 않습니다.");
+			return SGConstants.TRUE;
 		}
 	}
 	

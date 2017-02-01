@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import constants.SGConstants.EActionButtonItems;
@@ -74,10 +75,18 @@ public class SGDeleteInterface extends JDialog {
 			case DELETE:
 				studentId = textField.getText();
 				
-				manageStudent.deleteStudent(studentId);
-				
-				printPanel.setTable(manageStudent.getStudentList());
-				
+				try {
+					Integer.parseInt(studentId);
+					
+					if(manageStudent.deleteStudent(studentId)) {
+						printPanel.setTable(manageStudent.getStudentList());
+						JOptionPane.showMessageDialog(null, "삭제되었습니다.");
+					} else {
+						JOptionPane.showMessageDialog(null, "찾는 학번의 학생이 존재하지 않습니다.");
+					}
+				} catch (NumberFormatException exception) {
+					JOptionPane.showMessageDialog(null, "학번란에 정수값을 입력해주세요.");
+				}
 				clearTextField();
 				
 				deleteInterface.dispose();
@@ -85,6 +94,8 @@ public class SGDeleteInterface extends JDialog {
 				break;
 			case CLOSE:
 				deleteInterface.dispose();
+				break;
+			default:
 				break;
 			}		
 		}

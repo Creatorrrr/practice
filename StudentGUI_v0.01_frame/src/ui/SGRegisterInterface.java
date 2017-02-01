@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import constants.SGConstants.EActionButtonItems;
@@ -85,14 +86,22 @@ public class SGRegisterInterface extends JDialog {
 			case REGIST:
 				name = textField.get(0).getText();
 				studentId = textField.get(1).getText();
-				kor = Integer.parseInt(textField.get(2).getText());
-				eng = Integer.parseInt(textField.get(3).getText());
-				math = Integer.parseInt(textField.get(4).getText());
+				try {
+					Integer.parseInt(studentId);
+					kor = Integer.parseInt(textField.get(2).getText());
+					eng = Integer.parseInt(textField.get(3).getText());
+					math = Integer.parseInt(textField.get(4).getText());
+					
+					if(manageStudent.registerStudent(name, studentId, kor, eng, math)) {
+						printPanel.setTable(manageStudent.getStudentList());
+						JOptionPane.showMessageDialog(null, "등록되었습니다.");
+					} else {
+						JOptionPane.showMessageDialog(null, "이미 등록된 학생입니다.");
+					}
+				} catch (NumberFormatException exception) {
+					JOptionPane.showMessageDialog(null, "학번란, 점수란에 정수값을 입력해주세요.");
+				}
 				
-				manageStudent.registerStudent(name, studentId, kor, eng, math);
-
-				printPanel.setTable(manageStudent.getStudentList());
-						
 				clearTextField();
 				
 				registerInterface.dispose();
@@ -100,6 +109,8 @@ public class SGRegisterInterface extends JDialog {
 				break;
 			case CLOSE:
 				registerInterface.dispose();
+				break;
+			default:
 				break;
 			}		
 		}

@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import constants.SGConstants;
 import constants.SGConstants.EActionButtonItems;
 import constants.SGConstants.ELabelItems;
 import controller.SGManageStudent;
@@ -87,6 +89,8 @@ public class SGModifyInterface extends JDialog {
 		String name;
 		String studentId;
 		int kor, eng, math;
+		
+		int result;
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -95,13 +99,27 @@ public class SGModifyInterface extends JDialog {
 				target = textField.get(0).getText();
 				name = textField.get(1).getText();
 				studentId = textField.get(2).getText();
-				kor = Integer.parseInt(textField.get(3).getText());
-				eng = Integer.parseInt(textField.get(4).getText());
-				math = Integer.parseInt(textField.get(5).getText());
 				
-				manageStudent.modifyStudent(target, name, studentId, kor, eng, math);
+				try {
+					Integer.parseInt(target);
+					Integer.parseInt(studentId);
+					kor = Integer.parseInt(textField.get(3).getText());
+					eng = Integer.parseInt(textField.get(4).getText());
+					math = Integer.parseInt(textField.get(5).getText());
+					
+					result = manageStudent.modifyStudent(target, name, studentId, kor, eng, math);
 				
-				printPanel.setTable(manageStudent.getStudentList());
+					if(result == SGConstants.TRUE) {
+						printPanel.setTable(manageStudent.getStudentList());
+						JOptionPane.showMessageDialog(null, "수정되었습니다.");
+					} else if(result == SGConstants.EXIST) {
+						JOptionPane.showMessageDialog(null, "이미 등록된 학생입니다.");
+					} else {
+						JOptionPane.showMessageDialog(null, "찾는 학번의 학생이 존재하지 않습니다.");
+					}
+				} catch (NumberFormatException exception) {
+					JOptionPane.showMessageDialog(null, "학번란, 점수란에 정수값을 입력해주세요.");
+				}
 				
 				clearTextField();
 				

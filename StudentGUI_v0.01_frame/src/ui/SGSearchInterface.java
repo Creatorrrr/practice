@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import constants.SGConstants.EActionButtonItems;
@@ -76,12 +77,18 @@ public class SGSearchInterface extends JDialog {
 			case SEARCH:
 				studentId = textField.getText();
 				
-				studentList = manageStudent.searchStudent(studentId);
-				
-				if(studentList != null) {
-					printPanel.setTable(manageStudent.searchStudent(studentId));
-				} else {
-					// 경고창
+				try {
+					Integer.parseInt(studentId);
+					
+					studentList = manageStudent.searchStudent(studentId);
+					
+					if(studentList != null) {
+						printPanel.setTable(manageStudent.searchStudent(studentId));
+					} else {
+						JOptionPane.showMessageDialog(null, "찾는 학번의 학생이 존재하지 않습니다.");
+					}
+				} catch (NumberFormatException exception) {
+					JOptionPane.showMessageDialog(null, "학번란에 정수값을 입력해주세요.");
 				}
 				
 				clearTextField();
@@ -91,6 +98,8 @@ public class SGSearchInterface extends JDialog {
 				break;
 			case CLOSE:
 				searchInterface.dispose();
+				break;
+			default:
 				break;
 			}		
 		}

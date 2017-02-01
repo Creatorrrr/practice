@@ -35,7 +35,7 @@ public class SGControlPanel extends JPanel {
 		setLayout(new GridLayout(0, 5, 0, 0));
 		
 		for(EEditButtonItems e : EEditButtonItems.values()) {
-			button = new JButton(e.name());
+			button = new JButton(e.getUsage());
 			button.addActionListener(new SGInterfaceEvent());
 			button.setActionCommand(e.name());
 //			if (e.name().equals(SGConstants.DELETE_STUDENT) ||
@@ -59,19 +59,19 @@ public class SGControlPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			switch(EEditButtonItems.valueOf(e.getActionCommand())) {
-			case 학생등록:
+			case REGIST_STUDENT:
 				registerInterface.openDialog();
 				break;
-			case 학생검색:
+			case SEARCH_STUDENT:
 				searchInterface.openDialog();
 				break;
-			case 학생출력:
+			case PRINT_STUDENT:
 				printInterface.openDialog();
 				break;
-			case 학생삭제:
+			case DELETE_STUDENT:
 				deleteInterface.openDialog();
 				break;
-			case 학생수정:
+			case MODIFY_STUDENT:
 				modifyInterface.openDialog();
 				break;
 			}		
