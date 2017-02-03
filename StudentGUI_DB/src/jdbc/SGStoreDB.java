@@ -83,15 +83,15 @@ public class SGStoreDB {
 		
 		if(studentId != null) {
 			pstmt = conn.prepareStatement(
-					"SELECT studentId, name, kor, eng, math "
+					"SELECT studentId, name, kor, eng, math, kor + eng + math AS total, TRUNC((kor + eng + math / 3),2) AS avg "
 					+ "FROM student_tb "
 					+ "WHERE studentId = ? "
-					+ "ORDER BY ? DESC");
+					+ "ORDER BY ? DESC");	// ?가 2개
 		} else {
 			pstmt = conn.prepareStatement(
-					"SELECT studentId, name, kor, eng, math "
+					"SELECT studentId, name, kor, eng, math, kor + eng + math AS total, TRUNC((kor + eng + math / 3),2) AS avg "
 					+ "FROM student_tb "
-					+ "ORDER BY ? DESC");
+					+ "ORDER BY ? DESC");	// ?가 1개 setString수정 필요
 		}
 		pstmt.setString(1, studentId);
 		
@@ -100,7 +100,7 @@ public class SGStoreDB {
 			pstmt.setString(2, "studentId");
 			break;
 		case TOTAL:
-			pstmt.setString(2, "kor");
+			pstmt.setString(2, "total");
 			break;
 		default:
 			pstmt.setString(2, "studentId");

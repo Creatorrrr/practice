@@ -10,6 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JRadioButton;
 
 import constants.SGConstants.EActionButtonItems;
+import constants.SGConstants.EOrderItems;
 import constants.SGConstants.ESortOptionItems;
 import controller.SGManageStudent;
 import controller.SGStudent;
@@ -83,12 +84,10 @@ public class SGPrintInterface extends JDialog {
 			switch(EActionButtonItems.valueOf(e.getActionCommand())) {
 			case PRINT:
 				if(sortStudentId.isSelected()) {
-					manageStudent.sortStudent(ESortOptionItems.SORT_BY_ID.ordinal());
+					printPanel.setTable(manageStudent.searchStudent(null, EOrderItems.STUDENT_ID));
 				} else if (sortScore.isSelected()) {
-					manageStudent.sortStudent(ESortOptionItems.SORT_BY_SCORE.ordinal());
+					printPanel.setTable(manageStudent.searchStudent(null, EOrderItems.TOTAL));
 				}
-				
-				printPanel.setTable(manageStudent.getStudentList());
 				
 				printInterface.dispose();
 				

@@ -80,10 +80,10 @@ public class SGSearchInterface extends JDialog {
 				try {
 					Integer.parseInt(studentId);
 					
-					studentList = manageStudent.searchStudent(studentId);
+					studentList = manageStudent.searchStudent(studentId, null);
 					
 					if(studentList != null) {
-						printPanel.setTable(manageStudent.searchStudent(studentId));
+						printPanel.setTable(studentList);
 					} else {
 						JOptionPane.showMessageDialog(null, "찾는 학번의 학생이 존재하지 않습니다.");
 					}

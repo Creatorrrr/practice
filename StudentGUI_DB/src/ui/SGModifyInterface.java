@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import constants.SGConstants;
@@ -17,7 +16,6 @@ import constants.SGConstants.EActionButtonItems;
 import constants.SGConstants.ELabelItems;
 import controller.SGManageStudent;
 import frame.SGPrintPanel;
-import ui.SGRegisterInterface.ButtonEvent;
 
 public class SGModifyInterface extends JDialog {
 	
@@ -110,7 +108,7 @@ public class SGModifyInterface extends JDialog {
 					result = manageStudent.modifyStudent(target, name, studentId, kor, eng, math);
 				
 					if(result == SGConstants.TRUE) {
-						printPanel.setTable(manageStudent.getStudentList());
+						printPanel.setTable(manageStudent.searchStudent(null, null));
 						JOptionPane.showMessageDialog(null, "수정되었습니다.");
 					} else if(result == SGConstants.EXIST) {
 						JOptionPane.showMessageDialog(null, "이미 등록된 학생입니다.");

@@ -47,6 +47,7 @@ public class SGManageStudent {
 			return searchedList;
 		} catch (SQLException e) {
 			System.out.println("검색 실패");
+			e.printStackTrace();
 		}
 		return null;
 	}

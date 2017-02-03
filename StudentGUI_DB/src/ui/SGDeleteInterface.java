@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 
 import constants.SGConstants.EActionButtonItems;
 import constants.SGConstants.ELabelItems;
-import constants.SGConstants.ESortOptionItems;
 import controller.SGManageStudent;
 import frame.SGPrintPanel;
 
@@ -67,7 +66,7 @@ public class SGDeleteInterface extends JDialog {
 	
 	public class ButtonEvent implements ActionListener {
 		
-		String studentId;
+		String studentId = null;
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -79,7 +78,7 @@ public class SGDeleteInterface extends JDialog {
 					Integer.parseInt(studentId);
 					
 					if(manageStudent.deleteStudent(studentId)) {
-						printPanel.setTable(manageStudent.getStudentList());
+						printPanel.setTable(manageStudent.searchStudent(null, null));
 						JOptionPane.showMessageDialog(null, "삭제되었습니다.");
 					} else {
 						JOptionPane.showMessageDialog(null, "찾는 학번의 학생이 존재하지 않습니다.");
