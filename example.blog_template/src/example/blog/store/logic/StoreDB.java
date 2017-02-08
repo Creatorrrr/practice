@@ -99,7 +99,7 @@ public class StoreDB {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JdbcUtils.closeResource(conn, pstmt);
+			JdbcUtils.closeResource(conn, pstmt, rs);
 		}
 		
 		return Constants.SELECT_FAIL;
