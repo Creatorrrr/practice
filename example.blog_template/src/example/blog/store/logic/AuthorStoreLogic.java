@@ -50,10 +50,10 @@ public class AuthorStoreLogic extends StoreDB implements AuthorStore {
 			author.setName(l.get(2));
 			author.setEmail(l.get(3));
 			
-			for(String s : l) {
-				System.out.print(s.toString());
-			}
-			System.out.println();
+//			for(String s : l) {
+//				System.out.print(s.toString() + "\t");
+//			}
+//			System.out.println();
 		}
 		
 		return author;

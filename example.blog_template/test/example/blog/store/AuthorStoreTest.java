@@ -1,12 +1,5 @@
 package example.blog.store;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
-
-import example.blog.domain.Author;
-import example.blog.store.logic.AuthorStoreLogic;
-
 public class AuthorStoreTest {
 
 //	@Test
@@ -23,7 +16,7 @@ public class AuthorStoreTest {
 //		
 //		assertTrue(result);
 //	}
-
+//
 //	@Test
 //	public void testUpdate() {
 //		AuthorStore as = new AuthorStoreLogic();
@@ -47,14 +40,14 @@ public class AuthorStoreTest {
 //		
 //		assertTrue(result);
 //	}
-
-	@Test
-	public void testRead() {
-		AuthorStore as = new AuthorStoreLogic();
-		
-		Author author = as.read("demonpark");
-		
-		assertEquals("demonpark", author.getId());
-	}
+//
+//	@Test
+//	public void testRead() {
+//		AuthorStore as = new AuthorStoreLogic();
+//		
+//		Author author = as.read("demonpark");
+//		
+//		assertEquals("demonpark", author.getId());
+//	}
 
 }

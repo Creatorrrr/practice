@@ -15,7 +15,7 @@ public class BlogStoreLogic extends StoreDB implements BlogStore {
 	@Override
 	public boolean create(Blog blog) {
 		return this.updateDB("INSERT INTO blog_tb VALUES(?,?,?)", 
-				blog.getId() + "", 
+				blog.getId(), 
 				blog.getTitle(), 
 				blog.getAuthor().getId()) > 0;
 	}
@@ -25,13 +25,13 @@ public class BlogStoreLogic extends StoreDB implements BlogStore {
 		return this.updateDB("UPDATE blog_tb SET title = ?, author_id = ? WHERE id = ?", 
 				blog.getTitle(), 
 				blog.getAuthor().getId(),
-				blog.getId() + "") > 0;
+				blog.getId()) > 0;
 	}
 
 	@Override
 	public boolean delete(int blogId) {
 		return this.updateDB("DELETE FROM blog_tb WHERE id = ?", 
-				blogId + "") > 0;
+				blogId) > 0;
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class BlogStoreLogic extends StoreDB implements BlogStore {
 		
 		list = this.selectDB(
 				"SELECT id, title, author_id FROM blog_tb WHERE id = ?", 
-				blogId + "");
+				blogId);
 		
 		for(List<String> l : list) {
 			author = new Author();
@@ -52,10 +52,10 @@ public class BlogStoreLogic extends StoreDB implements BlogStore {
 			blog.setTitle(l.get(1));
 			blog.setAuthor(author);
 			
-			for(String s : l) {
-				System.out.print(s.toString());
-			}
-			System.out.println();
+//			for(String s : l) {
+//				System.out.print(s.toString() + "\t");
+//			}
+//			System.out.println();
 		}
 		
 		return blog;

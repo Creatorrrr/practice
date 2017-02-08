@@ -21,15 +21,27 @@ public class StoreDB {
 		factory.setUrl(Constants.DB_URL);
 	}
 	
-	protected int updateDB(String sql, String...strings) {
+	protected int updateDB(String sql, Object...objects) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			conn = factory.createConnection();
 			pstmt = conn.prepareStatement(sql);
-			for(int i = 0 ; i < strings.length ; i++) {
-				pstmt.setString(i + 1, strings[i]);
+			
+			for(int i = 0 ; i < objects.length ; i++) {
+				// check instance (add if you need more type)
+				if(objects[i] instanceof Integer) {
+					pstmt.setInt(i + 1, (Integer)objects[i]);
+				} else if(objects[i] instanceof Long) {
+					pstmt.setLong(i + 1, (Long)objects[i]);
+				} else if(objects[i] instanceof Float) {
+					pstmt.setFloat(i + 1, (Float)objects[i]);
+				} else if(objects[i] instanceof Double) {
+					pstmt.setDouble(i + 1, (Double)objects[i]);
+				} else {
+					pstmt.setString(i + 1, (String)objects[i]);
+				}
 			}
 			
 			return pstmt.executeUpdate();
@@ -43,7 +55,7 @@ public class StoreDB {
 		return Constants.UPDATE_FAIL;
 	}
 	
-	protected List<List<String>> selectDB(String sql, String...strings) {
+	protected List<List<String>> selectDB(String sql, Object...objects) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -56,8 +68,20 @@ public class StoreDB {
 		try {
 			conn = factory.createConnection();
 			pstmt = conn.prepareStatement(sql);
-			for(int i = 0 ; i < strings.length ; i++) {
-				pstmt.setString(i + 1, strings[i]);
+			
+			for(int i = 0 ; i < objects.length ; i++) {
+				// check instance (add if you need more type)
+				if(objects[i] instanceof Integer) {
+					pstmt.setInt(i + 1, (Integer)objects[i]);
+				} else if(objects[i] instanceof Long) {
+					pstmt.setLong(i + 1, (Long)objects[i]);
+				} else if(objects[i] instanceof Float) {
+					pstmt.setFloat(i + 1, (Float)objects[i]);
+				} else if(objects[i] instanceof Double) {
+					pstmt.setDouble(i + 1, (Double)objects[i]);
+				} else {
+					pstmt.setString(i + 1, (String)objects[i]);
+				}
 			}
 			
 			rs = pstmt.executeQuery();
@@ -80,4 +104,5 @@ public class StoreDB {
 		
 		return Constants.SELECT_FAIL;
 	}
+
 }
