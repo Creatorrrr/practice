@@ -2,31 +2,35 @@ package example.blog.service.logic;
 
 import example.blog.domain.Blog;
 import example.blog.service.BlogService;
+import example.blog.store.BlogStore;
+import example.blog.store.logic.BlogStoreLogic;
 
 public class BlogServiceLogic implements BlogService {
+	
+	private BlogStore store;
+	
+	public BlogServiceLogic() {
+		store = new BlogStoreLogic();
+	}
 
 	@Override
 	public boolean register(Blog blog) {
-		// TODO Auto-generated method stub
-		return false;
+		return store.create(blog);
 	}
 
 	@Override
 	public boolean modify(Blog blog) {
-		// TODO Auto-generated method stub
-		return false;
+		return store.update(blog);
 	}
 
 	@Override
 	public boolean remove(int blogId) {
-		// TODO Auto-generated method stub
-		return false;
+		return store.delete(blogId);
 	}
 
 	@Override
 	public Blog find(int blogId) {
-		// TODO Auto-generated method stub
-		return null;
+		return store.read(blogId);
 	}
 
 }

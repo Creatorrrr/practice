@@ -2,31 +2,35 @@ package example.blog.service.logic;
 
 import example.blog.domain.Author;
 import example.blog.service.AuthorService;
+import example.blog.store.AuthorStore;
+import example.blog.store.logic.AuthorStoreLogic;
 
 public class AuthorServiceLogic implements AuthorService {
+	
+	private AuthorStore store;
+	
+	public AuthorServiceLogic() {
+		store = new AuthorStoreLogic();
+	}
 
 	@Override
 	public boolean register(Author author) {
-		// TODO Auto-generated method stub
-		return false;
+		return store.create(author);
 	}
 
 	@Override
 	public boolean modify(Author author) {
-		// TODO Auto-generated method stub
-		return false;
+		return store.update(author);
 	}
 
 	@Override
 	public boolean remove(String authorId) {
-		// TODO Auto-generated method stub
-		return false;
+		return store.delete(authorId);
 	}
 
 	@Override
 	public Author find(String authorId) {
-		// TODO Auto-generated method stub
-		return null;
+		return store.read(authorId);
 	}
 
 }

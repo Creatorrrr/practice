@@ -14,8 +14,7 @@ public class BlogStoreLogic extends StoreDB implements BlogStore {
 	
 	@Override
 	public boolean create(Blog blog) {
-		return this.updateDB("INSERT INTO blog_tb VALUES(?,?,?)", 
-				blog.getId(), 
+		return this.updateDB("INSERT INTO blog_tb VALUES(blog_seq.NEXTVAL,?,?)", 
 				blog.getTitle(), 
 				blog.getAuthor().getId()) > 0;
 	}
