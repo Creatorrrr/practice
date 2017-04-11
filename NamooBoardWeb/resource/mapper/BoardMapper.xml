@@ -31,7 +31,7 @@
 				createdDate AS createdDate,
 				creatorName
 		FROM board
-	</select>
+	</select> 
 	
 	<delete id="delete" parameterType="String">
 		DELETE FROM board
