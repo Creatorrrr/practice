@@ -2,12 +2,10 @@ package namoo.board.store.logic;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import namoo.board.domain.Comment;
 import namoo.board.store.CommentStore;
 
-@Repository
+//@Repository
 public class CommentMemStore implements CommentStore {
 
 	private BoardRepository repo;

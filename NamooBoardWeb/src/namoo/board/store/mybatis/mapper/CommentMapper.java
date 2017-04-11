@@ -7,7 +7,7 @@ import namoo.board.domain.Comment;
 
 public interface CommentMapper {
 
-	String create(Comment comment);
+	int create(Comment comment);
 	List<Comment> retrieveAll(String articleId);
 	void delete(String commentId);
 }

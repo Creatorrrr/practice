@@ -7,7 +7,7 @@ import namoo.board.domain.Article;
 
 public interface ArticleMapper {
     
-    String create(Article article);
+    int create(Article article);
     Article retrieve(String articleId);
     List<Article> retrieveAll(String boardId);
     void update(Article article);

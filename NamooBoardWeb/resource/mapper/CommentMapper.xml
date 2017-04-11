@@ -2,31 +2,37 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="baseball.store.mapper.BaseballTeamMapper">
-  	<resultMap type="BaseballTeam" id="baseballTeamMap">
-		<id column="id" property="teamId"/>
-		<result column="name" property="name"/>
-		<result column="region" property="region"/>
-		<result column="manager" property="manager"/>
-		<result column="statium" property="statium"/>
-		<result column="logo" property="logo"/>
-		<!-- <collection property="players" column="id" ofType="Player"
-			select="baseball.store.mapper.PlayerMapper.selectPlayersByTeamId" javaType="ArrayList"
-			jdbcType="VARCHAR" /> -->
+ 
+<mapper namespace="namoo.board.store.mybatis.mapper.CommentMapper">
+
+	<resultMap type="Comment" id="commentMap">
+		<id column="id" property="commentId"/>
+		<result column="author_name" property="authorName"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="comm" property="comment"/>
+		<result column="article_id" property="articleId"/>
 	</resultMap>
 	
-	<sql id="selectBaseballTeam">
-  		SELECT id, name, region, manager, stadium, logo
-		FROM team_tb
-	</sql>
+	<insert id="create" parameterType="Comment">
+		<selectKey keyProperty="commentId" resultType="String" order="BEFORE">
+			SELECT comment_seq.NEXTVAL FROM dual
+		</selectKey>
+		INSERT INTO comment_tb(id, author_name, comm, reg_date, article_id)
+		VALUES (#{commentId}, #{authorName}, #{comment}, #{regDate}, #{articleId})
+	</insert>
 	
-	<select id="selectBaseballTeamById" parameterType="String" resultMap="baseballTeamMap">
-		<include refid="selectBaseballTeam"/>
-		WHERE id = #{teamId}
+	<select id="retrieveAll" parameterType="String" resultMap="commentMap">
+		SELECT id,
+				author_name,
+				reg_date,
+				comm,
+				article_id
+		FROM comment_tb
+		WHERE article_id = #{articleId}
 	</select>
 	
-	<select id="selectAllBaseballTeams" resultMap="baseballTeamMap">
-		<include refid="selectBaseballTeam"/>
-	</select>
-  </mapper>
+	<delete id="delete" parameterType="String">
+		DELETE FROM comment_tb
+		WHERE id = #{commentId}
+	</delete>
+</mapper>

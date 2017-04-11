@@ -3,39 +3,42 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="namoo.board.store.mybatis.mapper.BoardMapper">
+ <mapper namespace="namoo.board.store.mybatis.mapper.BoardMapper">
   
 	<select id="retrieve" parameterType="String" resultType="Board">
 		SELECT id AS boardId,
 				name,
-				createdDate
-				creatorName
-		FROM board
+				create_date AS createdDate,
+				creator_name AS creatorName
+		FROM board_tb
 		WHERE id = #{boardId}
 	</select>
 	
 	<insert id="create" parameterType="Board">
-		INSERT INTO board {id, name, creatorName, createdDate}
-		VALUES (board_seq.NEXTVAL, #{name}, #{creatorName}, #{createdDate})
+		<selectKey keyProperty="boardId" resultType="String" order="BEFORE">
+			SELECT board_seq.NEXTVAL FROM dual
+		</selectKey>
+		INSERT INTO board_tb(id, name, creator_name, create_date)
+		VALUES (#{boardId}, #{name}, #{creatorName}, #{createdDate})
 	</insert>
 	
 	<update id="update" parameterType="Board">
-		UPDATE board
-		SET name = #{name}, creatorName = #{creatorName}, createdDate = #{createdDate}
+		UPDATE board_tb
+		SET name = #{name}, creator_name = #{creatorName}, create_date = #{createdDate}
 		WHERE id = #{boardId}
 	</update>
 	
 	<select id="retrieveAll" parameterType="String" resultType="Board">
 		SELECT id AS boardId,
 				name,
-				createdDate AS createdDate,
-				creatorName
-		FROM board
-	</select> 
+				create_date AS createdDate,
+				creator_name AS creatorName
+		FROM board_tb
+	</select>
 	
 	<delete id="delete" parameterType="String">
-		DELETE FROM board
+		DELETE FROM board_tb
 		WHERE id = #{boardId}
 	</delete>
 	
-  </mapper>
+ </mapper>

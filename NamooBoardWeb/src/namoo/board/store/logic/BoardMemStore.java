@@ -2,13 +2,11 @@ package namoo.board.store.logic;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import namoo.board.domain.Board;
 import namoo.board.store.BoardStore;
 
 
-@Repository
+//@Repository
 public class BoardMemStore implements BoardStore {
 
     private BoardRepository repo;

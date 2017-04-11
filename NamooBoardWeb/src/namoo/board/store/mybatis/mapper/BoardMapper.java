@@ -7,7 +7,7 @@ import namoo.board.domain.Board;
 
 public interface BoardMapper {
 
-    String create(Board board);
+    int create(Board board);
     Board retrieve(String boardId);
     void update(Board board);
     void delete(String boardId);

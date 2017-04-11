@@ -11,19 +11,19 @@ import namoo.board.domain.Article;
 import namoo.board.domain.Board;
 import namoo.board.domain.Comment;
 import namoo.board.service.BoardService;
-import namoo.board.store.logic.ArticleMemStore;
-import namoo.board.store.logic.BoardMemStore;
-import namoo.board.store.logic.CommentMemStore;
+import namoo.board.store.ArticleStore;
+import namoo.board.store.BoardStore;
+import namoo.board.store.CommentStore;
 
 @Service
 public class BoardServiceLogic implements BoardService {
 
 	@Autowired
-	private BoardMemStore boardStore;
+	private BoardStore boardStore;
 	@Autowired
-	private ArticleMemStore articleStore;
+	private ArticleStore articleStore;
 	@Autowired
-	private CommentMemStore commentStore;
+	private CommentStore commentStore;
 	
 	@Override
 	public void registerArticle(Article article) {
@@ -41,6 +41,8 @@ public class BoardServiceLogic implements BoardService {
 		}
 		
 		// Comment 추가
+		List<Comment> comments = commentStore.retrieveAll(articleId);
+		article.setComments(comments);
 		
 		return article;
 	}
@@ -61,6 +63,12 @@ public class BoardServiceLogic implements BoardService {
 
 	@Override
 	public void removeArticle(String articleId) {
+		Article article = findArticle(articleId);
+		
+		for(Comment c : article.getComments()) {
+			removeComment(c.getCommentId());
+		}
+			
 		articleStore.delete(articleId);
 	}
 
@@ -96,6 +104,12 @@ public class BoardServiceLogic implements BoardService {
 
 	@Override
 	public void removeBoard(String boardId) {
+		Board board = findBoard(boardId);
+		
+		for(Article a : board.getArticles()) {
+			removeArticle(a.getArticleId());
+		}
+		
 		boardStore.delete(boardId);
 	}
 
