@@ -3,30 +3,39 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="baseball.store.mapper.BaseballTeamMapper">
-  	<resultMap type="BaseballTeam" id="baseballTeamMap">
-		<id column="id" property="teamId"/>
-		<result column="name" property="name"/>
-		<result column="region" property="region"/>
-		<result column="manager" property="manager"/>
-		<result column="statium" property="statium"/>
-		<result column="logo" property="logo"/>
-		<!-- <collection property="players" column="id" ofType="Player"
-			select="baseball.store.mapper.PlayerMapper.selectPlayersByTeamId" javaType="ArrayList"
-			jdbcType="VARCHAR" /> -->
-	</resultMap>
-	
-	<sql id="selectBaseballTeam">
-  		SELECT id, name, region, manager, stadium, logo
-		FROM team_tb
-	</sql>
-	
-	<select id="selectBaseballTeamById" parameterType="String" resultMap="baseballTeamMap">
-		<include refid="selectBaseballTeam"/>
-		WHERE id = #{teamId}
+  <mapper namespace="namoo.board.store.mybatis.mapper.BoardMapper">
+  
+	<select id="retrieve" parameterType="String" resultType="Board">
+		SELECT id AS boardId,
+				name,
+				createdDate
+				creatorName
+		FROM board
+		WHERE id = #{boardId}
 	</select>
 	
-	<select id="selectAllBaseballTeams" resultMap="baseballTeamMap">
-		<include refid="selectBaseballTeam"/>
+	<insert id="create" parameterType="Board">
+		INSERT INTO board {id, name, creatorName, createdDate}
+		VALUES (board_seq.NEXTVAL, #{name}, #{creatorName}, #{createdDate})
+	</insert>
+	
+	<update id="update" parameterType="Board">
+		UPDATE board
+		SET name = #{name}, creatorName = #{creatorName}, createdDate = #{createdDate}
+		WHERE id = #{boardId}
+	</update>
+	
+	<select id="retrieveAll" parameterType="String" resultType="Board">
+		SELECT id AS boardId,
+				name,
+				createdDate AS createdDate,
+				creatorName
+		FROM board
 	</select>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM board
+		WHERE id = #{boardId}
+	</delete>
+	
   </mapper>

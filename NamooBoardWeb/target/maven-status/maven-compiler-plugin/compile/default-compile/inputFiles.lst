@@ -1,16 +1,24 @@
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\interceptor\CharacterEncodingInterceptor.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\store\BoardStore.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\controller\ArticleController.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\store\logic\ArticleMemStore.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\store\logic\BoardMemStore.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\controller\BoardController.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\controller\CommentController.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\controller\UserController.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\domain\Board.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\store\CommentStore.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\service\logic\BoardLogic.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\domain\Comment.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\service\BoardService.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\domain\Article.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\store\ArticleStore.java
-C:\Users\Taegook Song\Desktop\spring_work\NamooBoardWeb_spring\src\namoo\board\store\logic\BoardRepository.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\BoardStore.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\controller\UserController.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\controller\BoardController.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\logic\BoardRepository.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\mybatis\mapper\ArticleMapper.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\mybatis\mapper\BoardMapper.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\mybatis\mapper\CommentMapper.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\service\BoardService.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\logic\ArticleMemStore.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\mybatis\CommentStoreLogic.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\domain\Board.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\ArticleStore.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\CommentStore.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\mybatis\BoardStoreLogic.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\mybatis\NamooBoardSessionFactory.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\logic\CommentMemStore.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\mybatis\ArticleStoreLogic.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\domain\Comment.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\controller\ArticleController.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\domain\Article.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\interceptor\CharacterEncodingInterceptor.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\service\logic\BoardServiceLogic.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\controller\CommentController.java
+C:\Users\kosta\git\practice\NamooBoardWeb\src\namoo\board\store\logic\BoardMemStore.java
