@@ -52,7 +52,7 @@ public class ArticleController {
 		List<Board> boards = boardService.findAllBoards();
 		model.addAttribute("boards", boards);
 		
-		return "article/articleDetailWithComment";
+		return "article/articleDetailWithCommentAjax";
 	}
 	
 	@RequestMapping("remove.do")

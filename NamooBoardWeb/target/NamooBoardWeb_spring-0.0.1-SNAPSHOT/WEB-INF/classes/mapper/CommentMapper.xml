@@ -4,18 +4,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="namoo.board.store.mybatis.mapper.CommentMapper">
+
+	<resultMap type="Comment" id="commentMap">
+		<id column="id" property="commentId"/>
+		<result column="author_name" property="authorName"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="comm" property="comment"/>
+		<result column="article_id" property="articleId"/>
+	</resultMap>
 	
 	<insert id="create" parameterType="Comment">
+		<selectKey keyProperty="commentId" resultType="String" order="BEFORE">
+			SELECT comment_seq.NEXTVAL FROM dual
+		</selectKey>
 		INSERT INTO comment_tb(id, author_name, comm, reg_date, article_id)
-		VALUES (comment_seq.NEXTVAL, #{authorName}, #{comment}, #{regDate}, #{articleId})
+		VALUES (#{commentId}, #{authorName}, #{comment}, #{regDate}, #{articleId})
 	</insert>
 	
-	<select id="retrieveAll" parameterType="String" resultType="Comment">
-		SELECT id AS commentId,
-				author_name AS authorName,
-				reg_date AS regDate,
-				comm AS comment,
-				article_id AS articleId
+	<select id="retrieveAll" parameterType="String" resultMap="commentMap">
+		SELECT id,
+				author_name,
+				reg_date,
+				comm,
+				article_id
 		FROM comment_tb
 		WHERE article_id = #{articleId}
 	</select>

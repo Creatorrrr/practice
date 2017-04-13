@@ -6,8 +6,11 @@
 <mapper namespace="namoo.board.store.mybatis.mapper.ArticleMapper">
 	
 	<insert id="create" parameterType="Article">
+		<selectKey keyProperty="articleId" resultType="String" order="BEFORE">
+			SELECT article_seq.NEXTVAL FROM dual
+		</selectKey>
 		INSERT INTO article_tb(id, title, author_name, reg_date, contents, board_id)
-		VALUES (article_seq.NEXTVAL, #{title}, #{authorName}, #{regDate}, #{contents} #{boardId})
+		VALUES (#{articleId}, #{title}, #{authorName}, #{regDate}, #{contents}, #{boardId})
 	</insert>
 	
 	<select id="retrieve" parameterType="String" resultType="Article">
@@ -40,7 +43,10 @@
 	<update id="update" parameterType="Article">
 		UPDATE article_tb
 		SET title = #{title},
-			contents = #{contents}
+			author_name = #{authorName},
+			reg_date = #{regDate},
+			contents = #{contents},
+			board_id = #{boardId}
 		WHERE id = #{articleId}
 	</update>
 </mapper>

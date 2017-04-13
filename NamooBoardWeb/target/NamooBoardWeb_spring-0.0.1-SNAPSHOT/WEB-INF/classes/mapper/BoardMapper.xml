@@ -8,20 +8,23 @@
 	<select id="retrieve" parameterType="String" resultType="Board">
 		SELECT id AS boardId,
 				name,
-				create_date AS createdDate
+				create_date AS createdDate,
 				creator_name AS creatorName
 		FROM board_tb
 		WHERE id = #{boardId}
 	</select>
 	
 	<insert id="create" parameterType="Board">
+		<selectKey keyProperty="boardId" resultType="String" order="BEFORE">
+			SELECT board_seq.NEXTVAL FROM dual
+		</selectKey>
 		INSERT INTO board_tb(id, name, creator_name, create_date)
-		VALUES (board_seq.NEXTVAL, #{name}, #{creatorName}, #{createdDate})
+		VALUES (#{boardId}, #{name}, #{creatorName}, #{createdDate})
 	</insert>
 	
 	<update id="update" parameterType="Board">
 		UPDATE board_tb
-		SET name = #{name}, creator_name = #{creatorName}, created_date = #{createdDate}
+		SET name = #{name}, creator_name = #{creatorName}, create_date = #{createdDate}
 		WHERE id = #{boardId}
 	</update>
 	
